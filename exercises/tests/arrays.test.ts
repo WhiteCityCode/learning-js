@@ -8,14 +8,6 @@ import { odds } from "../arrays/odds.js";
 import { reverse } from "../arrays/reverse.js";
 import { sum } from "../arrays/sum.js";
 
-Deno.test("sum", () => {
-  assertEquals(sum([1, 4, 5]), 10);
-  assertEquals(sum([0, 0, 1]), 1);
-  assertEquals(sum([-1, 0, 1]), 0);
-  assertEquals(sum([]), 0);
-  assertEquals(sum([0, 0, 0]), 0);
-});
-
 Deno.test("sumMultiples", () => {
   assertEquals(sum([1, 2, 4, 7]), 0);
   assertEquals(sum([-3, -5]), 0);
@@ -32,20 +24,12 @@ Deno.test("guess", () => {
   assertEquals(guess(0, [0, 0, 0]), 1);
 });
 
-Deno.test("max", () => {
-  assertEquals(max([1, 2, 4, 7]), 7);
-});
-
 Deno.test("reverse", () => {
   assertEquals(reverse([1, 2, 4, 7]), [7, 4, 2, 1]);
 });
 
 Deno.test("find", () => {
   assertEquals(find(2, [1, 2, 4, 7]), true);
-});
-
-Deno.test("odds", () => {
-  assertEquals(odds([1, 2, 4, 7]), [1, 4]);
 });
 
 Deno.test("concat", () => {
