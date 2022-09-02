@@ -5,6 +5,8 @@
  * 10 => true
  * 200 => true
  * 42 => false
+ * 
+ * Hint: Can you do it one line?
  */
 
 export const div10 = (N) => {
