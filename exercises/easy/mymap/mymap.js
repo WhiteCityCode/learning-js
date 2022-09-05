@@ -17,7 +17,7 @@
  * const double = (n) => n*2;
  * 
  * Note that you do not need to define an additional function - the above 
- * `guess` function is just an example.
+ * `double` function is just an example.
  */
 
 export const mymap = (arr, fn) => {
