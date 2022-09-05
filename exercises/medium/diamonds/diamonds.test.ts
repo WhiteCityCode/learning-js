@@ -4,7 +4,7 @@ import diamonds from "./diamonds.js";
 Deno.test("diamonds", () => {
   assertEquals(diamonds(3), " *\n***\n *\n");
   assertEquals(diamonds(5), "  *\n ***\n*****\n ***\n  *\n");
-  assertEquals(diamonds(2), "");
-  assertEquals(diamonds(0), "");
-  assertEquals(diamonds(-1), "");
+  assertEquals(diamonds(2), "Shouldn't work for even numbers");
+  assertEquals(diamonds(0), "Shouldn't work for 0");
+  assertEquals(diamonds(-1), "shouldn't work for negative numbers");
 });
