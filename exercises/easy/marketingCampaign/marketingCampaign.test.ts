@@ -1,7 +1,7 @@
 import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
 import { applyDiscount } from "./marketingCampaign.js";
 
-Deno.test("guess", () => {
+Deno.test("applyDiscount", () => {
   assertEquals(applyDiscount([{ name: "Foo", price: 5 }]), [
     { name: "Foo", price: 5, discount: 0 },
   ]);
