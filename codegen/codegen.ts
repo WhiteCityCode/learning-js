@@ -1,7 +1,9 @@
 type ExData = [number, string, Deno.DirEntry];
+const homeDir = new URL("..", import.meta.url).pathname;
+const exerciseDir = `${homeDir}exercises`;
 
 const getExercsiseFolders = (): Deno.DirEntry[] => {
-  const exerciseEntries = Array.from(Deno.readDirSync("../exercises"));
+  const exerciseEntries = Array.from(Deno.readDirSync(exerciseDir));
   return exerciseEntries.filter((i) => i.isDirectory);
 };
 
@@ -28,8 +30,8 @@ const changeFolderNames = async (
 
   try {
     for (const [idx, name, data] of folders) {
-      const newName = `../exercises/${idx + 1}-${name}`;
-      const oldName = `../exercises/${data.name}`;
+      const newName = `${exerciseDir}/${idx + 1}-${name}`;
+      const oldName = `${exerciseDir}/${data.name}`;
       await Deno.rename(oldName, newName);
       modified.push([oldName, newName]);
     }
@@ -48,16 +50,35 @@ const createExerciseFile = async (
   dirname: string,
   filename: string
 ): Promise<void> => {
-  const file = `../exercises/${dirname}/${filename}.ts`;
-  await Deno.writeTextFile(file, "test");
+  const file = `${dirname}/${filename}.ts`;
+  const contents = `/**
+* 
+* 
+* 
+* Example: 
+* 
+*/
+
+export default function ${filename}(s: any) {
+  return s;
+}  
+`;
+  await Deno.writeTextFile(file, contents);
 };
 
 const createTestFile = async (
   dirname: string,
   filename: string
 ): Promise<void> => {
-  const file = `../exercises/${dirname}/${filename}.test.ts`;
-  await Deno.writeTextFile(file, "test");
+  const file = `${dirname}/${filename}.test.ts`;
+  const contents = `import { assertEquals } from "https://deno.land/std@0.154.0/testing/asserts.ts";
+import ${filename} from "./${filename}.ts";
+
+Deno.test("${filename}", () => {
+  assertEquals(${filename}(), []);
+});
+`;
+  await Deno.writeTextFile(file, contents);
 };
 
 const main = async (args: string[]): Promise<void> => {
@@ -83,7 +104,7 @@ const main = async (args: string[]): Promise<void> => {
   const modifiedFiles = await changeFolderNames(toModify);
 
   try {
-    const newDir = `../exercises/${index}-${filename}`;
+    const newDir = `${exerciseDir}/${index}-${filename}`;
 
     await Deno.mkdir(newDir);
     await createExerciseFile(newDir, filename);
