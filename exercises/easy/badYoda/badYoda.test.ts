@@ -4,6 +4,6 @@ import { badYoda } from "./badYoda.js";
 Deno.test("badYoda", () => {
   assertEquals(
     badYoda("May the force be with you"),
-    "you with be force the May"
+    "you with be force the May",
   );
 });

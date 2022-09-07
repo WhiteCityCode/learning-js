@@ -24,6 +24,6 @@ Deno.test("applyDiscount", () => {
       { name: "Foo", price: 150, discount: 10 },
       { name: "Bar", price: 50, discount: 15 },
       { name: "Baz", price: 5, discount: 0 },
-    ]
+    ],
   );
 });

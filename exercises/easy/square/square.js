@@ -6,5 +6,5 @@
  */
 
 export const square = (n) => {
-    return n;
+  return n;
 };

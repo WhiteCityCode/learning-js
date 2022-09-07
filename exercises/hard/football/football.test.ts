@@ -15,7 +15,7 @@ Deno.test("calculatePoints", () => {
       "2:0",
       "2:3",
     ]),
-    30
+    30,
   );
   assertEquals(
     calculatePoints([
@@ -30,7 +30,7 @@ Deno.test("calculatePoints", () => {
       "2:3",
       "1:0",
     ]),
-    0
+    0,
   );
   assertEquals(
     calculatePoints([
@@ -45,6 +45,6 @@ Deno.test("calculatePoints", () => {
       "2:2",
       "2:2",
     ]),
-    10
+    10,
   );
 });

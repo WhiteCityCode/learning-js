@@ -8,7 +8,7 @@ Deno.test("TicTacToe", () => {
       [0, 1, 0],
       [1, 0, 0],
     ]),
-    true
+    true,
   );
   assertEquals(
     tictactoe([
@@ -16,7 +16,7 @@ Deno.test("TicTacToe", () => {
       [0, 1, 0],
       [1, 0, 1],
     ]),
-    true
+    true,
   );
   assertEquals(
     tictactoe([
@@ -24,7 +24,7 @@ Deno.test("TicTacToe", () => {
       [1, 1, 1],
       [1, 1, 1],
     ]),
-    true
+    true,
   );
   assertEquals(
     tictactoe([
@@ -32,7 +32,7 @@ Deno.test("TicTacToe", () => {
       [1, 0, 1],
       [0, 1, 0],
     ]),
-    false
+    false,
   );
   assertEquals(
     tictactoe([
@@ -40,6 +40,6 @@ Deno.test("TicTacToe", () => {
       [0, 0, 0],
       [0, 0, 0],
     ]),
-    false
+    false,
   );
 });

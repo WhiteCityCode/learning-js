@@ -8,6 +8,6 @@ Deno.test("powers of 2", () => {
   assertEquals(
     exponents(3, 0),
     1,
-    "any number raised to the power of zero should be 1"
+    "any number raised to the power of zero should be 1",
   );
 });

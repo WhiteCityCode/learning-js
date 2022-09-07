@@ -5,10 +5,10 @@
  */
 
 export const isEven = (n) => {
-    let remainder = n % 2;
-    if (remainder = 0) {
-        return true;
-    }
+  let remainder = n % 2;
+  if (remainder = 0) {
+    return true;
+  }
 
-    return false;
-}
+  return false;
+};
