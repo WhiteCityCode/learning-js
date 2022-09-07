@@ -25,7 +25,7 @@ const shouldChangeName = ([exNumber, exName]: ExData, idx: number): boolean => {
 
 const changeFolderNames = async (
   folders: ExData[],
-  isCreate: boolean
+  isCreate: boolean,
 ): Promise<[string, string][]> => {
   const modified: [string, string][] = [];
 
@@ -50,7 +50,7 @@ const changeFolderNames = async (
 
 const createExerciseFile = async (
   dirname: string,
-  filename: string
+  filename: string,
 ): Promise<void> => {
   const file = `${dirname}/${filename}.ts`;
   const contents = `/**
@@ -70,10 +70,11 @@ export default function ${filename}(s: any) {
 
 const createTestFile = async (
   dirname: string,
-  filename: string
+  filename: string,
 ): Promise<void> => {
   const file = `${dirname}/${filename}.test.ts`;
-  const contents = `import { assertEquals } from "https://deno.land/std@0.154.0/testing/asserts.ts";
+  const contents =
+    `import { assertEquals } from "https://deno.land/std@0.154.0/testing/asserts.ts";
 import ${filename} from "./${filename}.ts";
 
 Deno.test("${filename}", () => {
@@ -86,7 +87,7 @@ Deno.test("${filename}", () => {
 const handleRequest = async (
   index: number,
   filename: string,
-  isCreate: boolean
+  isCreate: boolean,
 ): Promise<void> => {
   const toModify = getExercsiseFolders()
     .map((i) => getExercsiseData(i))
@@ -139,7 +140,7 @@ const main = async (args: string[]): Promise<void> => {
 
   if (!/^[a-zA-Z]{1}[a-zA-Z0-9]+$/.test(filename) && isCreate) {
     console.log(
-      "Filename must begin with a letter and contain only letters and numbers"
+      "Filename must begin with a letter and contain only letters and numbers",
     );
     Deno.exit(1);
   }
