@@ -3,7 +3,7 @@
  * count the amount of character `c` that appear
  * in the string.
  *
- * For example, for the string "Baloons", and the
+ * For example, for the string "Balloons", and the
  * char "o", the expected output is 2.
  */
 
