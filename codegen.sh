@@ -1,1 +1,1 @@
-deno run --allow-read --allow-write ./codegen/codegen.ts $1 $2
+deno run --allow-read --allow-write ./codegen/codegen.ts $1 $2 $3

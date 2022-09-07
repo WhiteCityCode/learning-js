@@ -24,13 +24,15 @@ const shouldChangeName = ([exNumber, exName]: ExData, idx: number): boolean => {
 };
 
 const changeFolderNames = async (
-  folders: ExData[]
+  folders: ExData[],
+  isCreate: boolean
 ): Promise<[string, string][]> => {
   const modified: [string, string][] = [];
 
   try {
     for (const [idx, name, data] of folders) {
-      const newName = `${exerciseDir}/${idx + 1}-${name}`;
+      const newIndex = isCreate ? idx + 1 : idx - 1;
+      const newName = `${exerciseDir}/${newIndex}-${name}`;
       const oldName = `${exerciseDir}/${data.name}`;
       await Deno.rename(oldName, newName);
       modified.push([oldName, newName]);
@@ -81,41 +83,69 @@ Deno.test("${filename}", () => {
   await Deno.writeTextFile(file, contents);
 };
 
+const handleRequest = async (
+  index: number,
+  filename: string,
+  isCreate: boolean
+): Promise<void> => {
+  const toModify = getExercsiseFolders()
+    .map((i) => getExercsiseData(i))
+    .filter((i) => shouldChangeName(i, index));
+
+  const modifiedFiles = await changeFolderNames(toModify, isCreate);
+
+  if (isCreate) {
+    try {
+      const newDir = `${exerciseDir}/${index}-${filename}`;
+
+      await Deno.mkdir(newDir);
+      await createExerciseFile(newDir, filename);
+      await createTestFile(newDir, filename);
+    } catch (err) {
+      for (const [oldName, newName] of modifiedFiles) {
+        await Deno.rename(newName, oldName);
+        console.log(err);
+        Deno.exit(1);
+      }
+    }
+  } else {
+    const [, toDelete] = modifiedFiles[modifiedFiles.length - 1];
+    await Deno.remove(toDelete, { recursive: true });
+  }
+};
+
 const main = async (args: string[]): Promise<void> => {
-  const [filename, indexStr] = args;
+  const [mode, indexStr, filename] = args;
   const index = parseInt(indexStr);
+  const isCreate = mode === "--create";
+
+  if (mode !== "--create" && mode !== "--delete" && mode !== "--help") {
+    console.log(`Invalid flag ${mode} . Must be either --create or --delete`);
+    console.log("User codegen --help for additional info");
+    Deno.exit(1);
+  }
+
+  if (mode === "--help") {
+    console.log("Usage: ");
+    console.log("codegen --create exercise_name index");
+    console.log("codegen --delete index");
+    Deno.exit(0);
+  }
 
   if (isNaN(index) || index < 0) {
     console.log("File index is not a valid positive number");
     Deno.exit(1);
   }
 
-  if (!/^[a-zA-Z]{1}[a-zA-Z0-9]+$/.test(filename)) {
+  if (!/^[a-zA-Z]{1}[a-zA-Z0-9]+$/.test(filename) && isCreate) {
     console.log(
       "Filename must begin with a letter and contain only letters and numbers"
     );
     Deno.exit(1);
   }
 
-  const toModify = getExercsiseFolders()
-    .map((i) => getExercsiseData(i))
-    .filter((i) => shouldChangeName(i, index));
-
-  const modifiedFiles = await changeFolderNames(toModify);
-
-  try {
-    const newDir = `${exerciseDir}/${index}-${filename}`;
-
-    await Deno.mkdir(newDir);
-    await createExerciseFile(newDir, filename);
-    await createTestFile(newDir, filename);
-  } catch (err) {
-    for (const [oldName, newName] of modifiedFiles) {
-      await Deno.rename(newName, oldName);
-      console.log(err);
-      Deno.exit(1);
-    }
-  }
+  console.log(mode);
+  await handleRequest(index, filename, isCreate);
 };
 
 main(Deno.args);
