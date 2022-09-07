@@ -51,10 +51,10 @@
  *   height: 100
  *
  *   A--------width---------+
- *   |                     |
- *   |                     |  height
- *   |                     |
- *   +---------------------+
+ *   |                      |
+ *   |                      |  height
+ *   |                      |
+ *   +----------------------+
  *
  * Note that in Limax, the first coordinate is always the top-left corner, and
  * the second coordinate is always the bottom-right corner.
