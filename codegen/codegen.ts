@@ -54,14 +54,14 @@ const createExerciseFile = async (
 ): Promise<void> => {
   const file = `${dirname}/${filename}.ts`;
   const contents = `/**
-* 
-* 
-* 
-* Example: 
-* 
-*/
+ * 
+ * 
+ * 
+ * Example: 
+ * 
+ */
 
-export default function ${filename}(s: any) {
+export const ${filename} = (s: any) => {
   return s;
 }  
 `;
@@ -75,7 +75,7 @@ const createTestFile = async (
   const file = `${dirname}/${filename}.test.ts`;
   const contents =
     `import { assertEquals } from "https://deno.land/std@0.154.0/testing/asserts.ts";
-import ${filename} from "./${filename}.ts";
+import { ${filename} } from "./${filename}.ts";
 
 Deno.test("${filename}", () => {
   assertEquals(${filename}(), []);
