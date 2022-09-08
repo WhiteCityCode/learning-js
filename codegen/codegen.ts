@@ -52,18 +52,9 @@ const createExerciseFile = async (
   filename: string
 ): Promise<void> => {
   const file = `${dirname}/${filename}.ts`;
-  const contents = `/**
- * 
- * 
- * 
- * Example: 
- * 
- */
-
-export const ${filename} = (s: any) => {
-  return s;
-}  
-`;
+  const testBoilerplateLocation = `${codegenDir}/exercise.txt`;
+  const testBoilerplate = await Deno.readTextFile(testBoilerplateLocation);
+  const contents = testBoilerplate.replaceAll("${filename}", filename);
   await Deno.writeTextFile(file, contents);
 };
 
@@ -72,13 +63,11 @@ const createTestFile = async (
   filename: string
 ): Promise<void> => {
   const file = `${dirname}/${filename}.test.ts`;
-  const contents = `import { assertEquals } from "https://deno.land/std@0.154.0/testing/asserts.ts";
-import ${filename} from "./${filename}.ts";
-
-Deno.test("${filename}", () => {
-  assertEquals(${filename}(), []);
-});
-`;
+  const exerciseBoilerplateLocation = `${codegenDir}/test.txt`;
+  const exerciseBoilerplate = await Deno.readTextFile(
+    exerciseBoilerplateLocation
+  );
+  const contents = exerciseBoilerplate.replaceAll("${filename}", filename);
   await Deno.writeTextFile(file, contents);
 };
 

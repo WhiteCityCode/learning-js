@@ -1,0 +1,11 @@
+/**
+ * 
+ * 
+ * 
+ * Example: 
+ * 
+ */
+
+export const ${filename} = (s: any): any => {
+  return s;
+};
