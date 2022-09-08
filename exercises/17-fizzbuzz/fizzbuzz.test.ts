@@ -2,7 +2,7 @@ import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
 import { fizzbuzz } from "./fizzbuzz.ts";
 
 Deno.test("fizzbuzz", () => {
-  assertEquals(fizzbuzz(0), 0);
+  assertEquals(fizzbuzz(0), "fizzbuzz");
   assertEquals(fizzbuzz(1), 1);
   assertEquals(fizzbuzz(NaN), NaN);
   assertEquals(fizzbuzz(3), "fizz");
