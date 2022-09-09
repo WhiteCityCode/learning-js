@@ -1,14 +1,16 @@
 Usage:
 
-codegen --create index exercise_name - creates a new folder named index-exercise_name with associated exercise_name.ts and exercise_name.test.ts files, and increments the index of the other exercises
+codegen create index exercise_name - creates a new folder named index-exercise_name with associated exercise_name.ts and exercise_name.test.ts files, and increments the index of the other exercises
 
-codegen --insert index exercise_name - creates a new folder named index-exercise_name with associated exercise_name.ts and exercise_name.test.ts files, but does not change other indices 
+codegen insert index exercise_name - creates a new folder named index-exercise_name with associated exercise_name.ts and exercise_name.test.ts files, but does not change other indices 
 
-codegen --delete index - removes the folder with the specified index with all it's files and decrements other exercises' indices
+codegen delete index - removes the folder with the specified index with all it's files and decrements other exercises' indices
 
-codegen --remove index - removes the folder with the specified index with all it's files but does not modify other exercises index
+codegen remove index - removes the folder with the specified index with all it's files but does not modify other exercises index
 
-codegen --swap from_index to_index  - swaps the exercises indices while keeping their names;
+codegen swap from_index to_index  - swaps the exercises indices while keeping their names;
 
-codegen --rename index new_name  - renames the exercises at index, changing just the name but not the number
+codegen move index new_index - moves the exercise at index to the new index, incrementing all other exercise's indices
+
+codegen rename index new_name  - renames the exercises at index, changing just the name but not the number
  

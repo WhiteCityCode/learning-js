@@ -241,6 +241,39 @@ const handleSwap = async (args: string[]): Promise<void> => {
   await Deno.rename(oldTo, newTo);
 };
 
+const handleMove = async (args: string[]): Promise<void> => {
+  const [fromIdx, toIdx] = args;
+  const fIndex = parseInt(fromIdx);
+  const tIndex = parseInt(toIdx);
+
+  if (!isValidExerciseNb(fIndex)) {
+    console.error("From index is not a valid positive number");
+    Deno.exit(1);
+  }
+
+  if (!isValidExerciseNb(tIndex)) {
+    console.error("To index is not a valid positive number");
+    Deno.exit(1);
+  }
+
+  if (fIndex === tIndex) {
+    Deno.exit(0);
+  }
+
+  const moveUp = fIndex < tIndex;
+  const toChange = getExercsiseFolders()
+    .map(getExercsiseData)
+    .filter(([idx, ,]) => idx <= tIndex && idx >= fIndex)
+    .sort(([aIdx, ,], [bIdx, ,]) => aIdx - bIdx);
+
+  const [oldIdx, name] = moveUp ? toChange.shift()! : toChange.pop()!;
+  const oldName = `${exerciseDir}/${oldIdx}-${name}`;
+  const newName = `${exerciseDir}/${tIndex}-${name}`;
+
+  await Deno.rename(oldName, newName);
+  await changeFolderNames(toChange, !moveUp);
+};
+
 const handleRename = async (args: string[]): Promise<void> => {
   const [idx, newN] = args;
   const index = parseInt(idx);
@@ -275,6 +308,7 @@ const commands = [
   "delete",
   "remove",
   "swap",
+  "move",
   "rename",
   "help",
 ] as const;
@@ -307,6 +341,9 @@ const main = async (args: string[]): Promise<void> => {
       break;
     case "swap":
       await handleSwap(rest);
+      break;
+    case "move":
+      await handleMove(rest);
       break;
     case "rename":
       await handleRename(rest);
