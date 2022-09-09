@@ -261,9 +261,11 @@ const handleMove = async (args: string[]): Promise<void> => {
   }
 
   const moveUp = fIndex < tIndex;
+  const diffA = moveUp ? tIndex : fIndex;
+  const diffB = moveUp ? fIndex : tIndex;
   const toChange = getExercsiseFolders()
     .map(getExercsiseData)
-    .filter(([idx, ,]) => idx <= tIndex && idx >= fIndex)
+    .filter(([idx, ,]) => idx <= diffA && idx >= diffB)
     .sort(([aIdx, ,], [bIdx, ,]) => aIdx - bIdx);
 
   const [oldIdx, name] = moveUp ? toChange.shift()! : toChange.pop()!;
