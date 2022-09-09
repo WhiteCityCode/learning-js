@@ -6,7 +6,10 @@
  *
  *
  * Example:
- *
+ * 3 -> "fizz"
+ * 5 -> "buzz"
+ * 15 -> "fizzbuzz"
+ * 1 -> 1
  */
 
 export const harderFizzbuzz = (s: number): string | number => {
