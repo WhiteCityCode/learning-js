@@ -1,6 +1,7 @@
 /**
  *
- * Your function takes a number n as an argument and checks if it is even.
+ * Your function takes a number n as an argument and returns "even" if it's
+ * even or "odd" if it's not.
  * The task is to write the function without using the javascript if keyword
  *
  * Note: check out the ternary operator
@@ -10,6 +11,6 @@
  *
  */
 
-export const ternary = (n: number): boolean => {
-  return true;
+export const ternary = (n: number): "even" | "odd" => {
+  return "even";
 };
