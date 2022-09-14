@@ -6,7 +6,7 @@
  *
  * Luckily, you figured out that he modifies a single digit on the numbers he
  * sends. More specifically, in the given number n, the k-th bit from left to
- * right was shifted.
+ * right was swapped.
  *
  * It's up to you to figure out the function that finds these numbers.
  *

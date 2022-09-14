@@ -3,11 +3,11 @@
 
 // For example, take 153 (3 digits), which is narcisstic:
 
-//     1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153
+//     1³ + 5³ + 3³ = 1 + 125 + 27 = 153
 
 // and 1652 (4 digits), which isn't:
 
-//     1^4 + 6^4 + 5^4 + 2^4 = 1 + 1296 + 625 + 16
+//     1⁴ + 6⁴ + 5⁴ + 2⁴ = 1 + 1296 + 625 + 16
 
 export const isNarcisist = (N: number): boolean => {
   return true;
