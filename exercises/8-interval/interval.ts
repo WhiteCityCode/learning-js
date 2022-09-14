@@ -2,7 +2,7 @@
  * A function that checks if a value N belongs to a closed interval [a, b]
  * such that:
  *
- * { N ∈ ℝ | a <= x <= b }
+ * { N ∈ ℝ | a <= N <= b }
  *
  * Example:
  *
@@ -22,7 +22,7 @@ export const closedInterval = (s: number, [a, b]: Interval): boolean => {
  * A function that checks if a value N belongs to a half-open interval [a, b)
  * such that:
  *
- * { N ∈ ℝ | a <= x < b }
+ * { N ∈ ℝ | a <= N < b }
  *
  * Example:
  *
