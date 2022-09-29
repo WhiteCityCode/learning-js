@@ -8,6 +8,100 @@ You are encouraged to take code you find in this section and play around with it
 
 Let's get into it!
 
+# Importing and exporting
+
+When you start working on real world projects (and even before), you will notice that the more code you write, the harder it is to keep track of what you wrote and where. You end up spending more time searching for the place you need to change than for writing the change itself. When you reach these kinds of situations, it often makes sense to split the code up a bit, and write it in different files, each file containing code that  refers to a single concept, thus making it easier to know where you have to go when you want to modify something.
+
+Now, *how* to split up code is a whole topic on it's own, and we won't get into it right now. However, it is usefull to know how to do it, for future reference, and, to know what some of those weird keywords you keep seeing mean.
+
+Now if we create a new file and write (say, `greeter.ts`) a function in it
+
+```typescript
+const greeter = (name: string): string => {
+  return `Hello ${name}`;
+};
+```
+
+The compiler gives us a warning (`'greeter' is declared but its value is never read.`). And when we try to call the function inside `index.ts`: 
+
+```typescript
+const greeting = greeter("John Doe");
+console.log(greeting);
+```
+
+We get the error `Cannot find name 'greeter'`. It's becoming obvious that the compiler doesn't just know every function we write in any random file. We have to tell it where to find the functions we want to call. We can do that using `import`. Imports are written at the start of every file, and inside the import statement, you have to tell the compiler what you want imported, and where from.
+
+```typescript
+import { greeter } from './greeter.ts'
+
+const greeting = greeter("John Doe");
+console.log(greeting);
+```
+
+You write between curly braces what it is you want from the file that you imported. Please note that the file from which to import must be written relative to the file you are in. If you declared `greeter.ts` inside another folder, you have to give it that path. If it is in the same folder as the file you are importing into, `./` signifies that. Also, the way you write the file names differs from JS interpreter to JS interpreter. In deno, you have to write the extension of the file (`.js` / `.ts`) after the file name in the import. In nodeJS, you d not. You can find out what you need to do if you read the documentation of your interpreter.
+
+But, this gives another error: `Module '"./greeter.ts"' declares 'greeter' locally, but it is not exported`. This tells us that while the compiler found our file, but that it's contents are not exported. You have to say explicitly what you want to export. We fix that with the `export` keyword:
+
+```typescript
+export const greeter = (name: string): string => {
+  return `Hello ${name}`;
+};
+```
+
+And now all should work. But, what if we write another function that we want to call? Well, easy. We just export that too, and add it to the import list inside `index.ts`
+
+```typescript
+export const greeter = (name: string): string => {
+  return `Hello ${name}`;
+};
+
+export const discriminatingGreeter = (name: string): string => {
+  if (name === "John") {
+    return "Hey";
+  }
+
+  return `Hello ${name}`;
+};
+```
+
+```typescript
+import { greeter, discriminatingGreeter } from './greeter.ts'
+
+const greeting = greeter("John Doe");
+console.log(greeting); // Hello John Doe
+
+const anotherGreeting = discriminatingGreeter("John");
+console.log(anotherGreeting); // Hey
+```
+
+Easy stuff. But what if the module we want to import has a lot of functions that we want imported. Do we have to add *all* of them to the import list? Fortunately, no. We can import the whole file under an alias, and then use any exported function in that file using the dot notation.
+
+```typescript
+import * as variousGreetings from './greeter.ts'
+
+const greeting = variousGreetings.greeter("John Doe");
+console.log(greeting);
+
+const anotherGreeting = variousGreetings.discriminatingGreeter("John");
+console.log(anotherGreeting); // Hey
+```
+
+Nice. What would be even nicer, is if we could use that `as` keyword to give aliases to the functions we import.
+
+```typescript
+import { greeter, discriminatingGreeter as dg } from './greeter.ts'
+
+const greeting = greeter("John Doe");
+console.log(greeting); // Hello John Doe
+
+const anotherGreeting = dg("John");
+console.log(anotherGreeting); // Hey
+```
+
+While it is possible, it isn't generally recommended to do so. If you work in a team and eveyone keeps giving random names to the same function, it becomes very old very fast to remember which function is which. Just be aware that it is possible, in case you read some code that does it.
+
+This is the most common use cases you will see, but there are many more ways and tricks to use imports and exports. You will find them all on your iterpreter's documentation should you need it. For deno, you can find it [here](https://deno.land/manual@v1.26.0/examples/import_export).
+
 # Sum types and optionals
 
 In the exercises function signatures, you may have noticed some types defined as:
@@ -83,6 +177,39 @@ const checkout = (address?: Address): void => {
 
 Now the compiler should no longer complain. While there certainly are valid use cases for this, you should be **EXTREMELY** careful with the `!` notation. It is not a method to avoid writing code when you feel lazy and don't want to handle the case when the value is not present. It should only be used when you are 100% sure that the value will be there (and even then think about it twice, and then think about it again), or when you are debuging code and will write the missing case in te immediate future.
 
+## Default
+When defining a function that has optional parameters, it is often the case that, inside, we check to see if the optional parameter has a value, and if not, we give it a (sensible) default value.
+
+```typescript
+const applyDiscout = (price: number, discount?: number) => {
+  if(!discount) {
+    discount = 0.05 // we give 5% discount by default
+  }
+
+  return price * (1 - discount);
+}
+
+console.log(applyDiscount(100)); // 95
+console.log(applyDiscount(100, 0.1)); // 90
+```
+
+This use case is actually very common, so there is a way to make it easier. Any argument can have a default value.
+
+```typescript
+const applyDiscout = (price: number, discount: number = 0.05) => {
+  if(!discount) {
+    discount = 0.05 // we give 5% discount by default
+  }
+
+  return price * (1 - discount);
+}
+
+console.log(applyDiscount(100)); // 95
+console.log(applyDiscount(100, 0.1)); // 90
+```
+
+You just assign a value that you want if the user does not provide the parameter when he calls the function. Note the lack if an optional (`?`) sign. Parameters that have a default value are optional by default (for the caller, the writer of the function can just treat it as if it always exists). 
+
 # A bit of OOP
 
 In object oriented programming, we define a class as a blueprint for creating objects. In them, we define the properties and behaviours an object should have.
@@ -92,7 +219,7 @@ Let's create a new data structure, very commonly used in more low level programm
 
 Stacks are a data structure similar to lists (or arrays), in that they store multiple values of the same type. The difference is that in a stack, you can only add or remove items from the end of the list (this means it works by the LIFO principle: Last In, First Out). We can immagine this as if stacking (get it?) items on top of eachother. the only way to get to the item at the bottom (the first one that was added) is to remove all the items from above it.
 
-Now, we should also have a goal in mind before we start, other than the datatype itself. The classical example of a problem solved by a `Stack` (and the one we will solve) is [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) (or RPN). You are very much encouraged to code along and experiment with changing stuff to see what happends. Even if you end up writing just the code found here, try as much as possible to avoid copy pasting and write everything youself. Let's go!
+You can code along in the `stack.ts` file.
 
 ## The basics
 
@@ -174,7 +301,28 @@ console.log(myStack.length); // prints 0
 console.log(anotherStack.length); // prints 5
 ```
 
-Now, this is all well and good, but, while you may see the usefullness in this, you may also (rightfully) think that it is a bit silly to let anyone change the length of the stack whenever and however they want. Thankfully, we can fix this with the `private` keyword:
+Now, this is all well and good, but, while you may see the usefullness in this, you may also (rightfully) think that it is a bit silly to let anyone change the length of the stack whenever and however they want. 
+
+One option could be the `readonly` modifier. If a normal property is like a variable, `readonly` properties are like constants. If you declare a property `readonly`, it can be assigned a value only once, in the `constructor()`:
+
+```typescript
+  class Stack {
+    readonly length: number;
+
+    constructor(){
+      this.length = 0;
+    }
+  }
+```
+
+Now, if we try to modify length, we get an error
+
+```typescript
+const myStack = new Stack();
+console.log(myStack.length); // 0
+myStack.length = 5; // we get the error: Cannot assign to 'length' because it is a read-only property.
+```
+Unfortunately, this won't do though. Wile yes, you can't change the length from outside the class, you also can't change it from within, and this is bad, since we want our `Stack` tob e of dynamic length.  Thankfully, we can still fix the problem. With the `private` keyword:
 
 ```typescript
   class Stack {
@@ -217,6 +365,8 @@ Okay, that's a lot of new keywords there, let's see what they do. First of all, 
 As you probably assumed, if `private` means that we can not access something from outside the class, a `public` method or property can. In fact, all methods and properties are public by default. That's why earlier we could access the `.length` property without making it explicitly `public`.
 
 Finally, the `this` keyword is used to tell typescript that we are talking about the `length` property of this specific class, as opposed to a random variable with the same name. Whenever writing code inside a class, you should use `this.name` to refer to the properties or methods you declared.
+
+Side note: properties can be both `readonly` and `private`/`public` (only one of the last 2). `private`/`public` define from where we can read them, and `readonly` makes sure we can't (re)write them.
 
 Now, let's make things a bit more fancy. Having just a property named length is not really exciting.
 
