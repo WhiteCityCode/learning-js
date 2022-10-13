@@ -100,7 +100,7 @@ console.log(anotherGreeting); // Hey
 
 While it is possible, it isn't generally recommended to do so. If you work in a team and eveyone keeps giving random names to the same function, it becomes very old very fast to remember which function is which. Just be aware that it is possible, in case you read some code that does it.
 
-This is the most common use cases you will see, but there are many more ways and tricks to use imports and exports. You will find them all on your iterpreter's documentation should you need it. For deno, you can find it [here](https://deno.land/manual@v1.26.0/examples/import_export).
+These are the most common use cases you will see, but there are many more ways and tricks to use imports and exports. You will find them all on your iterpreter's documentation should you need it. For deno, you can find it [here](https://deno.land/manual@v1.26.0/examples/import_export).
 
 # Sum types and optionals
 

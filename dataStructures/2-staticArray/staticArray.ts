@@ -174,6 +174,18 @@ export class StaticArray {
    */
   //------------------------------Your code here--------------------------------
   /**
+   * @func copy
+   * Returns a shallow copy of the array
+   * @returns {StaicArray<T>} the copy
+   */
+  //------------------------------Your code here--------------------------------
+  /**
+   * @func clone
+   * Returns a deep copy of the array
+   * @returns {StaticArray<T>} the clone
+   */
+  //------------------------------Your code here--------------------------------
+  /**
    * @func every
    * Tests whether all elements in the array pass the test implemented by the
    * provided predicate function. Returns a boolean value
@@ -188,6 +200,12 @@ export class StaticArray {
    * @arg {(element: T?, index: number) => boolean} callbackfn predicate
    * @returns {boolean} true if callbackfn returns thruthy values for at least
    * one element
+   */
+  //------------------------------Your code here--------------------------------
+  /**
+   * @func reverse
+   * Reverses the order of the items in the array.
+   * @returns {boolean} if the operation succeeded
    */
   //------------------------------Your code here--------------------------------
   /**
