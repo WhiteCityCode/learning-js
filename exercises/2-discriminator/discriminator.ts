@@ -16,6 +16,8 @@
  */
 
 export const discriminator = (name: string): string => {
-  // Your code here
-  return name;
+  if(name === "Alice" || name === "Bob"){
+  	return `Hello, ${name}!`
+  }
+  return "Hello!";
 };
