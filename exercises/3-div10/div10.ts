@@ -10,5 +10,5 @@
  */
 
 export const div10 = (N: number): boolean => {
-  return false;
+  return N % 10 === 0;
 };
