@@ -11,6 +11,6 @@
  */
 
 export const greetings = (name: string): string => {
-  // Your code here
-  return name;
+
+	return "Hello, " + name + "!";
 };
