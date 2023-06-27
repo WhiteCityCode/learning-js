@@ -5,5 +5,5 @@
 // -1 -> 1
 
 export const oppositeNumber = (n: number): number => {
-  return n;
+  return -n;
 };
