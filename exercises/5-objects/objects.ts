@@ -18,5 +18,10 @@ export const objects = (
   lastName: string,
   age: number
 ): Person => {
-  return unknown;
+  	const p = {
+	firstName,
+	lastName,
+	age
+	}
+	return p;
 };
