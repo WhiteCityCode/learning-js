@@ -8,6 +8,6 @@ Deno.test("compositeObjects", () => {
   );
   assertEquals(
     compositeObjects({ firstName: "John", lastName: "von Neumann", age: 119 }),
-    { firstName: "George", lastName: "Doe", fullName: "George Doe", age: 119 }
+    { firstName: "John", lastName: "von Neumann", fullName: "John von Neumann", age: 119 }
   );
 });
