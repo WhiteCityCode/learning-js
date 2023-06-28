@@ -3,4 +3,5 @@ import { odds } from "./odds.ts";
 
 Deno.test("odds", () => {
   assertEquals(odds([1, 2, 4, 7]), [1, 4]);
+  assertEquals(odds([1, 2, 2, 2, 2, 2]), [1, 2, 2]);
 });
