@@ -8,5 +8,5 @@
  */
 
 export const americanDistance = (miles: number): number => {
-  return NaN;
+  return miles/0.6214;
 };

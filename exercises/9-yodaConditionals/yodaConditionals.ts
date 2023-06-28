@@ -6,7 +6,7 @@
 
 export const isEven = (n: number): boolean => {
   let remainder = n % 2;
-  if ((remainder = 0)) {
+  if ((remainder == 0)) {
     return true;
   }
 

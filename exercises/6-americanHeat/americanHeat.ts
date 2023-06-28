@@ -10,5 +10,5 @@
  * 0 => -17.7777778
  */
 export const americanHeat = (F: number): number => {
-  return NaN;
+  return (F - 32)/1.8;
 };

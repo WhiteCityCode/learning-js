@@ -17,5 +17,5 @@ type Person = {
 };
 
 export const ageComparison = (p1: Person, p2: Person): Person => {
-  return { ...p1, ...p2 };
+  return p1.age > p2.age ? p1 : p2;
 };

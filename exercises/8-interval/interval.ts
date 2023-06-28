@@ -15,7 +15,7 @@
 type Interval = [number, number];
 
 export const closedInterval = (s: number, [a, b]: Interval): boolean => {
-  return false;
+  return s >= a && s <= b;
 };
 
 /**
@@ -33,5 +33,5 @@ export const closedInterval = (s: number, [a, b]: Interval): boolean => {
  */
 
 export const halfOpenInterval = (s: number, [a, b]: Interval): boolean => {
-  return false;
+  return s >= a && s < b;
 };

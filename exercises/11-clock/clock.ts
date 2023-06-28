@@ -9,5 +9,5 @@
 // h = 0, m = 1, s = 1 -> 61000
 
 export const numMilli = (h: number, m: number, s: number): number => {
-  return h + m + s;
+  return (h*3600 + m*60 + s)*1000;
 };
