@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
-import { exponent } from "./exponents.ts";
+import { exponent } from "./exponent.ts";
 
 Deno.test("exponent", () => {
   assertEquals(exponent(2, 2), 4);
