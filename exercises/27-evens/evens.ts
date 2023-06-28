@@ -6,5 +6,6 @@
 // [1,2,3,4,5,6] -> [2,4,6]
 
 export const evens = (a: number[]): number[] => {
-  return a;
+  const b = a.filter(a => a % 2 === 0)
+	return b;
 };

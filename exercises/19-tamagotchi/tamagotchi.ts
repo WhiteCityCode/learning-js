@@ -29,5 +29,22 @@
 import { Pet } from "./pets.ts";
 
 export const feed = (pet: Pet): void => {
-  // Food please
+	switch(pet.getType()){
+	case "cat":
+		pet.feed("mice");
+		break;
+	case "dog":
+		pet.feed("cats");
+		break;
+	case "guinea_pig":
+		pet.feed("fruit");
+		break;
+	case "chicken":
+		pet.feed("worms");
+		break;
+	case "duck":
+		pet.feed("bread");
+		break;
+	
+	}
 }  

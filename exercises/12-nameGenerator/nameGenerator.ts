@@ -14,5 +14,5 @@ type Person = {
 };
 
 export const nameGenerator = (s: Person): string => {
-  return s.toString();
+  return `${s.firstName} ${s.lastName}`;
 };

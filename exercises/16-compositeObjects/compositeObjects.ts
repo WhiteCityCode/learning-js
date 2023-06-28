@@ -15,6 +15,17 @@ type Person = {
   age: number;
 };
 
+type ExtendedPerson = Person & {
+  fullName: string;
+}
+
 export const compositeObjects = (p: Person): Person & {fullName: string} => {
-  return void;
+  	const p2 = {
+	firstName : p.firsName,
+	fullName : `${p.firstName} ${p.lastName}`,
+	lasName: p.lastName,
+	age : p.age
+	}
+//	return {...p, fullName_: fullName };
+	return p2;
 };

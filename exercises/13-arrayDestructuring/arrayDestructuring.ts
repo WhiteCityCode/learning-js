@@ -10,5 +10,6 @@
  */
 
 export const arrayDestructuring = <T>(s: [T, T, T]): T => {
-  return "Asd";
+	let [x, y, z] = s;
+	return y;
 };

@@ -10,5 +10,7 @@
  */
 
 export const tail = <T>(arr: T[]): T[] => {
-  return arr;
+  const [, ...rest] = arr;
+  return rest;
 };
+

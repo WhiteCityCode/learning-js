@@ -4,5 +4,6 @@
 // [1,2,3] -> [2,4,6]
 
 export const doubleArray = (a: number[]): number[] => {
-  return [];
+	const b = a.map(x => x * 2)
+	return b;
 };

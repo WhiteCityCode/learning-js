@@ -4,5 +4,14 @@
 // 3 and 5. Otherwise just return the number;
 
 export const fizzbuzz = (n: number): number | string => {
-  return n;
+	if (n % 5 === 0 && n % 3 === 0){
+		return "fizzbuzz";
+	}
+	if (n % 3 === 0){
+		return "fizz";
+	}
+	if (n % 5 === 0){
+		return "buzz";
+	}
+	return n;
 };

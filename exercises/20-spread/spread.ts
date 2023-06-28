@@ -10,5 +10,5 @@
  */
 
 export const spread = (s: number[]): number[] => {
-  return s;
+  return [...s,0];
 };

@@ -5,5 +5,6 @@
 // [1,2,3] -> ["1", "2", "3"]
 
 export const itemsToString = (a: number[]): string[] => {
-  return [];
+	const b = a.map(x => x.toString())
+  return b;
 };

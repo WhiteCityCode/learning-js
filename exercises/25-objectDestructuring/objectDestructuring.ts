@@ -17,5 +17,6 @@ type Person = {
 };
 
 export const objectDestructuring = (s: Person): string => {
-  return s.firstName;
+	const {firstName, lastName, } = s;
+	return `${firstName} ${lastName}`;
 };

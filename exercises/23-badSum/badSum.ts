@@ -9,5 +9,5 @@ export const badSum = (s: number[]): number => {
     return 0;
   }
   
-  return s[0] + s[s.length];
+  return s[0] + s[s.length-1];
 }  

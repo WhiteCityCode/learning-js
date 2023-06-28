@@ -12,5 +12,5 @@
  */
 
 export const ternary = (n: number): "even" | "odd" => {
-  return "even";
+  return n % 2 === 0 ? "even" : "odd";
 };

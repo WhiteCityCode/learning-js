@@ -7,6 +7,7 @@
  */
 
 export const sum = (arr: number[]): number => {
-  // Your code here
-  return NaN;
+	let sum = 0;
+	arr.map(x => sum += x);
+	return sum;
 };
