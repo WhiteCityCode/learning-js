@@ -8,5 +8,5 @@
  */
 
 export const keys = (s: Record<string, unknown>): string[] => {
-  return [];
+  return Object.keys(s);
 }  

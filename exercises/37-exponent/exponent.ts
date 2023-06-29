@@ -7,5 +7,9 @@
 // exponent(3,2) -> 9 (3^2)
 
 export const exponent = (m: number, n: number): number => {
-  return 42;
+let sol = 1;
+for(let i = 0; i < n; i++){
+	sol *= m;
+}
+return sol;
 };

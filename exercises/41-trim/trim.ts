@@ -9,5 +9,5 @@
 
 export const trim = (s: string): string => {
   // Your code here
-  return s;
+  return s.trim();
 };

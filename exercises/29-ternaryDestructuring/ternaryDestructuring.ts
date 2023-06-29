@@ -10,5 +10,6 @@
  */
 
 export const ternaryDestructuring = <T>(s: [T, T], n: number): T => {
-  return s[n];
+	let [a,b] = s;
+	return n === 1 ? a : b;
 };

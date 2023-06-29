@@ -6,6 +6,9 @@
  */
 
 export const leap = (n: number): number[] => {
-  // Your code here
-  return [];
+ let sol = [];
+ for(let i = 0; i < n; ++i){
+	sol.push(2024 + i*4);
+	 }
+  return sol;
 };

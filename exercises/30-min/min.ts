@@ -7,5 +7,5 @@
  */
 
 export const min = (arr: number[]): number => {
-  return NaN;
+  return Math.min(...arr) ;
 };

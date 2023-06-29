@@ -13,5 +13,7 @@
  */
 
 export const harderFizzbuzz = (s: number): string | number => {
-  return s;
-};
+  return (s % 3 === 0 && s % 5 === 0) ? "fizzbuzz" 
+  		: (s % 3 === 0 ) ? "fizz"
+		: (s % 5 === 0) ? "buzz" : s;
+}

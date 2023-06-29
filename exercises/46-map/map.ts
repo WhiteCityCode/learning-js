@@ -22,5 +22,5 @@
 type Fn<T, U> = (v: T, idx: number) => U;
 
 export const map = <T, U>(arr: T[], fn: Fn<T, U>): U[] => {
-  return [];
+  return arr.map((x, indx) => fn(x, indx));
 };

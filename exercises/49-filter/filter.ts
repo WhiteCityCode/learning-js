@@ -7,5 +7,12 @@
 
 type Fn<T, U = unknown> = (v: T, idx: number) => U;
 export const filter = <T>(arr: T[], fn: Fn<T>): T[] => {
-  return arr;
+//	let arr_cp = Array.from(arr);
+	let arr_cpy = []
+	for(let i = 0; i < arr.length; ++i){
+		if(fn(arr[i], i) ){
+			arr_cpy.push(arr[i]);
+		}
+	}
+return arr_cpy;
 };

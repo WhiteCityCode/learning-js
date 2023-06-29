@@ -9,5 +9,5 @@
 
 export const replace = (s: string): string => {
   // Your code here
-  return s;
+  return s.replace("cars","balloons");
 };

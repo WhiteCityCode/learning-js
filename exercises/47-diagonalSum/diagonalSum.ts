@@ -28,5 +28,11 @@
  */
 
 export const diagonalSum = (m: number[][]): number => {
-  return m[42][42];
+  let a = 0, b = 0;
+  for(let i = 0; i < m.length; ++i ){
+		a += m[i][i];
+		b += m[i][m.length-i-1];
+	  }
+
+  return Math.abs(a-b);
 };

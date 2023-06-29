@@ -7,5 +7,5 @@
  */
 
 export const max = (arr: number[]): number => {
-  return NaN;
+  return Math.max(...arr);
 };

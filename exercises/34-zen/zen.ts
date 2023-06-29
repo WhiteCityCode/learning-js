@@ -9,5 +9,17 @@
  */
 
 export const zen = (arr: unknown[]): unknown[] => {
-  return [];
+/*
+console.log(arr);
+let sol:unknown[] = [];
+for (let x =0; x < arr.length; ++x){
+	if(typeof arr[x]  === "number" ) {
+		if(arr[x] < 0)
+		continue;
+		}
+	sol.push(x);
+	}
+*/
+	let sol = arr.filter(x => typeof x === "number" && x !== -0  && x >= 0);
+return sol;
 };

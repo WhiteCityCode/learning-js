@@ -7,5 +7,5 @@
  */
 
 export const badYoda = (s: string): string => {
-  return s;
+  return s.split(' ').reverse().toString().replaceAll(',', ' ');
 };

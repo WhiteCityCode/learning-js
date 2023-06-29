@@ -8,5 +8,9 @@
 // between([1,2,3], 0, 2) -> [1, 2]
 
 export const between = <T>(arr: T[], m: number, n: number): T[] => {
-  return arr;
+let sol	= [];
+for ( let i = m; i < n; ++i){
+	sol.push(arr[i]);
+	}
+return sol;
 };

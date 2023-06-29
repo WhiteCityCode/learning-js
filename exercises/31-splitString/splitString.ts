@@ -6,5 +6,6 @@
 // "You good?" ["Y", "o", "u", " ", "g", "o", "o", "d", "?"]
 
 export const split = (s: string): string[] => {
-  return [];
+	const a = [...s];  
+	return a;
 };

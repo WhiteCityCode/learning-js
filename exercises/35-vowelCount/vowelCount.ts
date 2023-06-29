@@ -6,5 +6,11 @@
 // "bbb" -> 0
 
 export const vowelCount = (s: string): number => {
-  return 42;
+let vowels = "aeiou".split('')
+let sol = 0;
+for(let x of s){
+	if (vowels.includes(x))
+		sol++;
+}
+return sol;
 };
